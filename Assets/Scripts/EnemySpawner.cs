@@ -61,6 +61,9 @@ public class EnemySpawner : MonoBehaviour
             newEnemy.GetComponent<Enemy>().MovementSpeed = waveConfig.MovementSpeed;
             newEnemy.GetComponent<Enemy>().WayPoints = waveConfig.EnemyWayPoints;
             newEnemy.GetComponent<Enemy>().Health = waveConfig.Health;
+            newEnemy.GetComponent<Enemy>().PowerFire = waveConfig.PowerFire;
+            newEnemy.GetComponent<Enemy>().FireCooldown = waveConfig.FireCooldown;
+            newEnemy.GetComponent<Enemy>().CrashDamage = waveConfig.CrashDamage;
             yield return new WaitForSeconds(waveConfig.TimeBetweenSpawns + Random.Range(0f, waveConfig.SpawnRandomFactor));
         }
     }

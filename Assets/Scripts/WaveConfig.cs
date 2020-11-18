@@ -17,7 +17,7 @@ public class WaveConfig : ScriptableObject
     [SerializeField]
     int numberOfEnemies = 5;
     [SerializeField]
-    float movementSpeed = 8;
+    int movementSpeed = 8;
     [SerializeField]
     int mintimeToPrepareWave = 2;
     [SerializeField]
@@ -25,6 +25,12 @@ public class WaveConfig : ScriptableObject
     int timeToPrepareWave;
     [SerializeField]
     float health;
+    [SerializeField]
+    float powerFire;
+    [SerializeField]
+    float fireCooldown;
+    [SerializeField]
+    float crashDamage;
 
     public GameObject EnemyPrefab { get => enemyPrefab;}
     public List<Transform> EnemyWayPoints 
@@ -42,7 +48,7 @@ public class WaveConfig : ScriptableObject
     public float TimeBetweenSpawns { get => timeBetweenSpawns;}
     public float SpawnRandomFactor { get => spawnRandomFactor;}
     public int NumberOfEnemies { get => numberOfEnemies;}
-    public float MovementSpeed { get => movementSpeed;}
+    public int MovementSpeed { get => movementSpeed;}
     public int TimeToPrepareWave 
     {
         get
@@ -53,4 +59,7 @@ public class WaveConfig : ScriptableObject
     }
 
     public float Health { get => health;}
+    public float PowerFire { get => powerFire; set => powerFire = value; }
+    public float FireCooldown { get => fireCooldown; set => fireCooldown = value; }
+    public float CrashDamage { get => crashDamage; set => crashDamage = value; }
 }

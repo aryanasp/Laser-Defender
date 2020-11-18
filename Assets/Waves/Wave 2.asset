@@ -21,3 +21,6 @@ MonoBehaviour:
   mintimeToPrepareWave: 4
   maxTimePrepareWave: 8
   health: 200
+  powerFire: 10
+  fireCooldown: 2
+  crashDamage: 200

@@ -6,15 +6,16 @@ using UnityEngine;
 public class Laser : MonoBehaviour
 {
     //config params
-    [SerializeField]
-    int laserProjectileSpeed;
+    float laserProjectileSpeed;
     int damage = 100;
     public int Damage { get => damage;}
+    public Vector2 Direction { get => direction; set => direction = value; }
+    public float LaserProjectileSpeed { get => laserProjectileSpeed; set => laserProjectileSpeed = value; }
 
 
     //cached
     Rigidbody2D myRigidbody2D;
-
+    Vector2 direction;
 
     //state
 
@@ -28,7 +29,8 @@ public class Laser : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        myRigidbody2D.velocity = new Vector2(0, laserProjectileSpeed);
+        
+        myRigidbody2D.velocity = LaserProjectileSpeed * Direction ;
     }
 
 

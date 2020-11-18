@@ -20,3 +20,7 @@ MonoBehaviour:
   movementSpeed: 2
   mintimeToPrepareWave: 4
   maxTimePrepareWave: 8
+  health: 100
+  powerFire: 15
+  fireCooldown: 1.5
+  crashDamage: 50

@@ -2,49 +2,44 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : SpaceShip
 {
     //config params
-    [SerializeField]
-    int movementSpeed;
-    [SerializeField]
-    GameObject laserPrefab;
-    [SerializeField]
-    float padding = 1f;
+    float padding = 0.3f;
+    private float immortalTime = 1f;
     Camera gameCamera;
     float xMin;
     float xMax;
     float yMin;
     float yMax;
+
+
+    //cached
     Coroutine firingCoroutine;
 
-
-    //cachecd
-    Rigidbody2D myRigidbody2D;
-    SpriteRenderer mySpriteRenderer;
 
     //state
     float horizontal;
     float vertical;
-    private bool fire;
-    [SerializeField]
-    private float fireCooldown = 0.3f;
+    
+    
+    private bool immortal = false;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        myRigidbody2D = GetComponent<Rigidbody2D>();
-        mySpriteRenderer = GetComponent<SpriteRenderer>();
+        direction = Vector2.up;
+        base.Start();
         gameCamera = Camera.main;
-        SetUpBounaries();
+        SetUpBoundaries();
     }
 
-    private void SetUpBounaries()
+    private void SetUpBoundaries()
     {
         xMin = gameCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).x + padding;
-        xMax = gameCamera.ViewportToWorldPoint(new Vector3(1, 0, 0)).x - mySpriteRenderer.size.x - padding;
+        xMax = gameCamera.ViewportToWorldPoint(new Vector3(1, 0, 0)).x - MySpriteRenderer.size.x - padding;
         yMin = gameCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).y + padding;
-        yMax = gameCamera.ViewportToWorldPoint(new Vector3(0, 1, 0)).y - mySpriteRenderer.size.y - padding;
+        yMax = gameCamera.ViewportToWorldPoint(new Vector3(0, 1, 0)).y - MySpriteRenderer.size.y - padding;
     }
 
     // Update is called once per frame
@@ -53,29 +48,27 @@ public class Player : MonoBehaviour
         HandleMovement();
     }
 
-    private void Update()
+    protected override void Update()
     {
         HandleInput();
-    }
-    
-    IEnumerator FireContinously()
-    {
-        while (true)
-        {
-            HandleFire();
-            yield return new WaitForSeconds(fireCooldown);
-        }
+        base.Update();
     }
 
-    private void HandleFire()
+    private IEnumerator IndicateImmortal()
     {
-        GameObject laserGameObject = Instantiate(laserPrefab, transform.Find("Laser Position").position, Quaternion.identity) as GameObject; 
+        while (immortal)
+        {
+            MySpriteRenderer.enabled = false;
+            yield return new WaitForSeconds(.03f);
+            MySpriteRenderer.enabled = true;
+            yield return new WaitForSeconds(.03f);
+        }
     }
 
     private void HandleMovement()
     {
-        myRigidbody2D.velocity = new Vector2(horizontal * movementSpeed, vertical * movementSpeed / 2);
-        Vector2 param = myRigidbody2D.velocity * Time.fixedDeltaTime;
+        MyRigidbody2D.velocity = new Vector2(horizontal * movementSpeed, vertical * movementSpeed / 2);
+        Vector2 param = MyRigidbody2D.velocity * Time.fixedDeltaTime;
         transform.position = new Vector2(
             Mathf.Clamp(transform.position.x, xMin, xMax), 
             Mathf.Clamp(transform.position.y, yMin, yMax)) ;
@@ -94,4 +87,36 @@ public class Player : MonoBehaviour
             StopCoroutine(firingCoroutine);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Enemy Laser")
+        {
+            StartCoroutine(HandleDamage(100));
+        }
+        if (other.gameObject.tag == "Enemy")
+        {
+            StartCoroutine(HandleDamage(CrashDamage));
+        }
+    }
+
+    private IEnumerator HandleDamage(float damageRecieved)
+    {
+        if (!immortal)
+        {
+            if (IsDead)
+            {
+                HandleDeath();
+            }
+            else
+            {
+                Health -= (int) damageRecieved;
+                immortal = true;
+                StartCoroutine(IndicateImmortal());
+                yield return new WaitForSeconds(immortalTime);
+                immortal = false;
+            }
+        }
+    }
+
 }
