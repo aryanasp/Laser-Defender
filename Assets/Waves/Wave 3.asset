@@ -20,3 +20,4 @@ MonoBehaviour:
   movementSpeed: 4
   mintimeToPrepareWave: 4
   maxTimePrepareWave: 8
+  health: 200

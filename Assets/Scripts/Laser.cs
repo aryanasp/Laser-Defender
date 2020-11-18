@@ -8,9 +8,15 @@ public class Laser : MonoBehaviour
     //config params
     [SerializeField]
     int laserProjectileSpeed;
+    int damage = 100;
+    public int Damage { get => damage;}
+
 
     //cached
     Rigidbody2D myRigidbody2D;
+
+
+    //state
 
 
     // Start is called before the first frame update
@@ -23,6 +29,12 @@ public class Laser : MonoBehaviour
     void FixedUpdate()
     {
         myRigidbody2D.velocity = new Vector2(0, laserProjectileSpeed);
+    }
+
+
+    public void Hit()
+    {
+        Destroy(gameObject);
     }
 
 }

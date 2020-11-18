@@ -21,12 +21,11 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         //Initialize First Wave
-        currentWave = waveConfigs[0];
+        currentWave = waveConfigs[startingWave];
         waveSpawnCooldown = currentWave.TimeToPrepareWave;
     }
     private void Update()
     {
-        Debug.Log(waveSpawnCooldown);
         HandleGenerateWaves();
     }
 
@@ -61,6 +60,7 @@ public class EnemySpawner : MonoBehaviour
                 Quaternion.identity);
             newEnemy.GetComponent<Enemy>().MovementSpeed = waveConfig.MovementSpeed;
             newEnemy.GetComponent<Enemy>().WayPoints = waveConfig.EnemyWayPoints;
+            newEnemy.GetComponent<Enemy>().Health = waveConfig.Health;
             yield return new WaitForSeconds(waveConfig.TimeBetweenSpawns + Random.Range(0f, waveConfig.SpawnRandomFactor));
         }
     }

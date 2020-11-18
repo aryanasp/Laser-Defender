@@ -23,6 +23,8 @@ public class WaveConfig : ScriptableObject
     [SerializeField]
     int maxTimePrepareWave = 8;
     int timeToPrepareWave;
+    [SerializeField]
+    float health;
 
     public GameObject EnemyPrefab { get => enemyPrefab;}
     public List<Transform> EnemyWayPoints 
@@ -49,4 +51,6 @@ public class WaveConfig : ScriptableObject
             return timeToPrepareWave;
         }
     }
+
+    public float Health { get => health;}
 }
