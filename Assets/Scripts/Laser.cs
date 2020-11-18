@@ -25,8 +25,4 @@ public class Laser : MonoBehaviour
         myRigidbody2D.velocity = new Vector2(0, laserProjectileSpeed);
     }
 
-    private void OnBecameInvisible()
-    {
-        Destroy(gameObject);
-    }
 }
