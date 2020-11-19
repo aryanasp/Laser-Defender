@@ -120,8 +120,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 9
   laserPrefab: {fileID: 8078479530185743695, guid: fad482ea0a939e14eb0abddc85a93c56, type: 3}
-  padding: 0.3
+  health: 500
+  powerFire: 40
+  crashDamage: 200
   fireCooldown: 0.3
+  explosionVFX: {fileID: 790220506392980065, guid: 767f1991e16d7ec4aa94016b42d42a5f, type: 3}
 --- !u!1 &2217426670169172208
 GameObject:
   m_ObjectHideFlags: 0

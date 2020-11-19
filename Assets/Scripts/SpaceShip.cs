@@ -20,6 +20,8 @@ public abstract class SpaceShip : MonoBehaviour
     protected float crashDamage = 200f;
     [SerializeField]
     protected float fireCooldown = 0.3f;
+    [SerializeField]
+    GameObject explosionVFX;
 
     public int MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
     public float Health { get => health; set => health = value; }
@@ -64,9 +66,11 @@ public abstract class SpaceShip : MonoBehaviour
         }
     }
 
-    protected void HandleDeath()
+    protected virtual void HandleDeath()
     {
         Destroy(gameObject);
+        GameObject explosion = (GameObject) Instantiate(explosionVFX, transform.position, transform.rotation);
+        Destroy(explosion, 0.15f);
     }
 
     protected IEnumerator FireContinously()

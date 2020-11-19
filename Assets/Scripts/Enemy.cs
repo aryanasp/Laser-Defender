@@ -89,4 +89,9 @@ public class Enemy : SpaceShip
             Health -= laser.Damage;
         }
     }
+
+    //protected override void HandleDeath()
+    //{
+
+    //}
 }

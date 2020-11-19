@@ -119,7 +119,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd6b22b4119e96246b049bfd0246bc2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSpeed: 0
   laserPrefab: {fileID: 8078479530185743695, guid: 7e408cc619029d54eac51a276b3c73da, type: 3}
+  health: 500
+  powerFire: 40
+  crashDamage: 200
+  fireCooldown: 0.3
+  explosionVFX: {fileID: 790220506392980065, guid: 767f1991e16d7ec4aa94016b42d42a5f, type: 3}
 --- !u!60 &7705751225229955843
 PolygonCollider2D:
   m_ObjectHideFlags: 0
