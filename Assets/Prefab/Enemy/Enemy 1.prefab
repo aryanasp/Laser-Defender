@@ -41,8 +41,8 @@ GameObject:
   - component: {fileID: 4863850948886608483}
   - component: {fileID: 4863850948886608482}
   - component: {fileID: -6099373820620996957}
-  - component: {fileID: 331836890}
   - component: {fileID: 83700675}
+  - component: {fileID: 331836890}
   m_Layer: 0
   m_Name: Enemy 1
   m_TagString: Enemy
@@ -137,6 +137,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!58 &83700675
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4863850948886608481}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1640625
 --- !u!114 &331836890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,19 +172,7 @@ MonoBehaviour:
   crashDamage: 200
   fireCooldown: 0.3
   explosionVFX: {fileID: 790220506392980065, guid: 767f1991e16d7ec4aa94016b42d42a5f, type: 3}
---- !u!58 &83700675
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4863850948886608481}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.1640625
+  laserSFX: {fileID: 8300000, guid: 99231b00b72202f4a953eccfd843ed98, type: 3}
+  laserSoundVolume: 0.2
+  deathSFX: {fileID: 8300000, guid: 412901d1fd2a3384b912eef4d177c43e, type: 3}
+  deathSoundVolume: 0.025

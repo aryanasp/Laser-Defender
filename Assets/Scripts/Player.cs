@@ -6,8 +6,8 @@ public class Player : SpaceShip
 {
     //config params
     float padding = 0.3f;
-    private float immortalTime = 1f;
-    Camera gameCamera;
+    private float immortalTime = 0.55f;
+    
     float xMin;
     float xMax;
     float yMin;
@@ -30,7 +30,7 @@ public class Player : SpaceShip
     {
         direction = Vector2.up;
         base.Start();
-        gameCamera = Camera.main;
+        
         SetUpBoundaries();
     }
 
@@ -100,6 +100,13 @@ public class Player : SpaceShip
         }
     }
 
+    protected override void HandleDeath()
+    {
+        base.HandleDeath();
+        
+        FindObjectOfType<Level>().LoadGameOver();
+    }
+
     private IEnumerator HandleDamage(float damageRecieved)
     {
         if (!immortal)
@@ -111,6 +118,10 @@ public class Player : SpaceShip
             else
             {
                 Health -= (int) damageRecieved;
+                if(Health < 0)
+                {
+                    Health = 0;
+                }
                 immortal = true;
                 StartCoroutine(IndicateImmortal());
                 yield return new WaitForSeconds(immortalTime);

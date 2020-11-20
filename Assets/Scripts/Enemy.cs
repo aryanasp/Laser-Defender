@@ -8,7 +8,7 @@ public class Enemy : SpaceShip
 
     // config params
     List<Transform> wayPoints;
-
+    int scoreValue = 150;
 
     //cached
     public List<Transform> WayPoints { get => wayPoints; set => wayPoints = value; }
@@ -37,6 +37,7 @@ public class Enemy : SpaceShip
     // Start is called before the first frame update
     protected override void Start()
     {
+        base.Start();
         direction = Vector2.down;
         FireCooldown = Random.Range((float)0.8 * FireCooldown, (float)1.2 * FireCooldown);
         transform.position = WayPoints[0].position;
@@ -71,6 +72,12 @@ public class Enemy : SpaceShip
         transform.position = Vector2.MoveTowards(transform.position, nextPos, MovementSpeed * Time.deltaTime);
     }
 
+    protected override void HandleDeath()
+    {
+        FindObjectOfType<GameSession>().AddToScore(scoreValue);
+        base.HandleDeath();
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         ProcessHit(other);
@@ -90,8 +97,4 @@ public class Enemy : SpaceShip
         }
     }
 
-    //protected override void HandleDeath()
-    //{
-
-    //}
 }

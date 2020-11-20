@@ -1,0 +1,37 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class Level : MonoBehaviour
+{
+    [SerializeField]
+    private float delayForSeconds = 2f;
+
+    public void LoadStartMenu()
+    {
+        SceneManager.LoadScene("Start Menu");
+    }
+
+    public void LoadGame()
+    {
+        SceneManager.LoadScene("Game");
+        FindObjectOfType<GameSession>().ResetGame();
+    }
+
+    public void LoadGameOver() 
+    {
+        StartCoroutine(DelayForGameOver());
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    private IEnumerator DelayForGameOver()
+    {
+        yield return new WaitForSeconds(delayForSeconds);
+        SceneManager.LoadScene("Game Over");
+    }
+}

@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4863850948886608483}
   - component: {fileID: 4863850948886608482}
   - component: {fileID: 2124922976246497305}
-  - component: {fileID: 331836890}
   - component: {fileID: 7705751225229955843}
+  - component: {fileID: 331836890}
   m_Layer: 0
   m_Name: Enemy 0
   m_TagString: Enemy
@@ -107,25 +107,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &331836890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4863850948886608481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd6b22b4119e96246b049bfd0246bc2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 0
-  laserPrefab: {fileID: 8078479530185743695, guid: 7e408cc619029d54eac51a276b3c73da, type: 3}
-  health: 500
-  powerFire: 40
-  crashDamage: 200
-  fireCooldown: 0.3
-  explosionVFX: {fileID: 790220506392980065, guid: 767f1991e16d7ec4aa94016b42d42a5f, type: 3}
 --- !u!60 &7705751225229955843
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -178,6 +159,29 @@ PolygonCollider2D:
       - {x: -0.029296875, y: -0.1484375}
       - {x: 0.048828125, y: -0.07421875}
       - {x: 0.056640625, y: -0.0625}
+--- !u!114 &331836890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4863850948886608481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd6b22b4119e96246b049bfd0246bc2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 0
+  laserPrefab: {fileID: 8078479530185743695, guid: 7e408cc619029d54eac51a276b3c73da, type: 3}
+  health: 500
+  powerFire: 40
+  crashDamage: 200
+  fireCooldown: 0.3
+  explosionVFX: {fileID: 790220506392980065, guid: 767f1991e16d7ec4aa94016b42d42a5f, type: 3}
+  laserSFX: {fileID: 8300000, guid: 99231b00b72202f4a953eccfd843ed98, type: 3}
+  laserSoundVolume: 0.2
+  deathSFX: {fileID: 8300000, guid: 412901d1fd2a3384b912eef4d177c43e, type: 3}
+  deathSoundVolume: 0.025
 --- !u!1 &7972707173573519090
 GameObject:
   m_ObjectHideFlags: 0
